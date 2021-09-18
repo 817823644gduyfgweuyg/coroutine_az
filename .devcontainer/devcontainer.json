@@ -1,3 +1,10 @@
 {
-  "build": { "dockerfile": "docker/Dockerfile" },
+  "build": {
+    "dockerfile": "../Dockerfile",
+},
+"extensions": [
+	"ms-vscode.cpptools",
+	"bazelbuild.vscode-bazel"
+],
+"remoteUser": "user",
 }

@@ -31,7 +31,7 @@ WORKDIR /
 RUN rm -rf /root
 RUN mkdir root
 ARG uid=1000
-ARG user=${user}
+ARG user=user
 ARG gid=1000
 ARG group=${user}
 RUN groupadd -g ${gid} ${group}

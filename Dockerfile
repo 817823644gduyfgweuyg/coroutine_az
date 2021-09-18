@@ -29,9 +29,11 @@ RUN git clone https://github.com/bazelbuild/bazel-watcher.git
 WORKDIR /root/bazel-watcher
 RUN bazel build //ibazel
 RUN cp /root/bazel-watcher/bazel-bin/ibazel/linux_amd64_stripped/ibazel /usr/local/bin
+WORKDIR /root
 RUN wget https://github.com/bazelbuild/bazel/archive/master.zip -O master.zip && unzip master.zip
 WORKDIR /root/bazel-master
 RUN bazel build //scripts:bazel-complete.bash
+RUN cp bazel-bin/scripts/bazel-complete.bash /etc/bash_completion.d/bazel
 WORKDIR /
 RUN rm -rf /root
 RUN mkdir root
@@ -42,3 +44,4 @@ ARG group=${user}
 RUN groupadd -g ${gid} ${group}
 RUN useradd -ms /bin/bash ${user} -u ${uid} -g ${gid}
 WORKDIR /home/${user}
+RUN echo "source /etc/bash_completion.d/bazel" >> .bashrc

@@ -5,8 +5,13 @@ RUN apt-get update && apt-get install -y \
  wget \
  git \
  python3 \
+ python3-distutils \
+ python3-pip \
  python-is-python3 \
 && rm -rf /var/lib/apt/lists/*
+
+RUN pip install pip numpy wheel
+RUN pip install keras_preprocessing --no-deps
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 20
 RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 20
 RUN update-alternatives --install /usr/bin/cc cc /usr/bin/gcc 30
@@ -31,4 +36,4 @@ ARG gid=1000
 ARG group=${user}
 RUN groupadd -g ${gid} ${group}
 RUN useradd -ms /bin/bash ${user} -u ${uid} -g ${gid}
-
+WORKDIR /home/${user}

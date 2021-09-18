@@ -18,7 +18,8 @@ build --host_cxxopt=-std=c++14
 # Adding "--cxxopt=-D_GLIBCXX_USE_CXX11_ABI=0" creates parity with TF
 # compilation options. It also addresses memory use due to
 # copy-on-write semantics of std::strings of the older ABI.
-build --cxxopt=-D_GLIBCXX_USE_CXX11_ABI=0
+# build --cxxopt=-D_GLIBCXX_USE_CXX11_ABI=0
 
 build --experimental_repo_remote_exec
+build --per_file_copt .*upb.c@-w
 

@@ -8,6 +8,8 @@ RUN apt-get update && apt-get install -y \
  python3-distutils \
  python3-pip \
  python-is-python3 \
+ zip \
+ unzip \
 && rm -rf /var/lib/apt/lists/*
 
 RUN pip install pip numpy wheel
@@ -27,6 +29,9 @@ RUN git clone https://github.com/bazelbuild/bazel-watcher.git
 WORKDIR /root/bazel-watcher
 RUN bazel build //ibazel
 RUN cp /root/bazel-watcher/bazel-bin/ibazel/linux_amd64_stripped/ibazel /usr/local/bin
+RUN wget https://github.com/bazelbuild/bazel/archive/master.zip -O master.zip && unzip master.zip
+WORKDIR /root/bazel-master
+RUN bazel build //scripts:bazel-complete.bash
 WORKDIR /
 RUN rm -rf /root
 RUN mkdir root

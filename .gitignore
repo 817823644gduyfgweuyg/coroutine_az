@@ -1,1 +1,2 @@
 bazel-*
+src/compile_commands.json

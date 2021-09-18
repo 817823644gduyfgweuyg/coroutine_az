@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor > bazel.gpg
 RUN mv bazel.gpg /etc/apt/trusted.gpg.d/
-RUN echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
+RUN echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | tee /etc/apt/sources.list.d/bazel.list
 
 RUN apt-get update && \
   apt-get install bazel \
@@ -54,4 +54,4 @@ ARG group=${user}
 RUN groupadd -g ${gid} ${group}
 RUN useradd -ms /bin/bash ${user} -u ${uid} -g ${gid}
 WORKDIR /home/${user}
-# RUN echo "source /etc/bash_completion.d/bazel" >> .bashrc
+RUN echo "source /etc/bash_completion.d/bazel" >> .bashrc

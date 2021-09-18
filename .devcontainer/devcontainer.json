@@ -1,0 +1,5 @@
+{
+  "image": "mcr.microsoft.com/vscode/devcontainers/base:focal",
+  "extensions": ["dbaeumer.vscode-eslint"],
+  "forwardPorts": [3000]
+}

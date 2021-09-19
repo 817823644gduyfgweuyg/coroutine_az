@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
  curl \
  gnupg \
  clang-format \
- sudo
+ sudo \
 && rm -rf /var/lib/apt/lists/*
 
 RUN curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor > bazel.gpg

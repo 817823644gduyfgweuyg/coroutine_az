@@ -12,3 +12,9 @@ cc_binary(
         "@org_tensorflow//tensorflow/core:lib",
     ],
 )
+
+cc_binary(
+  name = "coro",
+  srcs = ["coro.cpp"],
+  copts = ["-fcoroutines","--std=c++20"],
+)

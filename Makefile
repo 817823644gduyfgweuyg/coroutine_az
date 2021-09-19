@@ -11,5 +11,5 @@ container:
 	--build-arg group=$(GROUP) \
 	. --tag devcontainer
 
-run: container
-	docker run -i -t --rm --volume $(PWD)/src/:/home/$(USER)/src --user=$(USER) devcontainer bash
+# run: container
+# 	docker run -i -t --rm --volume $(PWD)/src/:/home/$(USER)/src --user=$(USER) devcontainer bash

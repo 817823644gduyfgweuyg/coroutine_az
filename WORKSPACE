@@ -1,7 +1,7 @@
-workspace(name = "test")
+workspace(name = "coroutine_az")
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-load("//:repo.bzl", "tensorflow_serving_http_archive")
+load("//bzl:repo.bzl", "tensorflow_serving_http_archive")
 
 tensorflow_serving_http_archive(
     name = "tf_serving",

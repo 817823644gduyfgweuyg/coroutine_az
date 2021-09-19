@@ -40,6 +40,8 @@ RUN wget https://github.com/bazelbuild/buildtools/releases/download/4.2.0/buildi
 RUN chmod a+x buildifier
 RUN wget https://github.com/bazelbuild/bazel-watcher/releases/download/v0.15.10/ibazel_linux_amd64 -O ibazel
 RUN chmod a+x ibazel
+RUN curl -L "https://github.com/grailbio/bazel-compilation-database/archive/0.5.2.tar.gz" | tar -xz \
+  && ln -f -s "/usr/local/bin/bazel-compilation-database-0.5.2/generate.py" bazel-compdb
 # WORKDIR /root
 # RUN wget https://github.com/bazelbuild/bazel/archive/master.zip -O master.zip && unzip master.zip
 # WORKDIR /root/bazel-master

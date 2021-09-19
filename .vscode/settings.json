@@ -1,0 +1,10 @@
+{
+  "files.exclude": {
+    "**/bazel-*": true,
+    "**/compile_commands.json": true
+  },
+  "C_Cpp.files.exclude": {
+  
+    "**/.vscode": true
+  }
+}

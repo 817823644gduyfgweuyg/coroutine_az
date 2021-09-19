@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y \
  apt-transport-https \
  curl \
  gnupg \
+ clang-format \
 && rm -rf /var/lib/apt/lists/*
 
 RUN curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor > bazel.gpg
@@ -39,7 +40,7 @@ RUN wget https://github.com/bazelbuild/buildtools/releases/download/4.2.0/buildi
 RUN chmod a+x buildifier
 RUN wget https://github.com/bazelbuild/bazel-watcher/releases/download/v0.15.10/ibazel_linux_amd64 -O ibazel
 RUN chmod a+x ibazel
-WORKDIR /root
+# WORKDIR /root
 # RUN wget https://github.com/bazelbuild/bazel/archive/master.zip -O master.zip && unzip master.zip
 # WORKDIR /root/bazel-master
 # RUN bazel build //scripts:bazel-complete.bash

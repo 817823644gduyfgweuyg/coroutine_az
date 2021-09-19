@@ -21,5 +21,6 @@ build --host_cxxopt=-std=c++14
 # build --cxxopt=-D_GLIBCXX_USE_CXX11_ABI=0
 
 build --experimental_repo_remote_exec
+query --experimental_repo_remote_exec
 build --per_file_copt .*upb.c@-w
 

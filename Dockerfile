@@ -2,6 +2,7 @@ FROM ubuntu:20.04
 RUN apt-get update && apt-get install -y \
  gcc-10 \
  g++-10 \
+ gdb \
  wget \
  git \
  python3 \

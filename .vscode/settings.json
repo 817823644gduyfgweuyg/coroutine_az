@@ -4,5 +4,14 @@
   },
   "C_Cpp.files.exclude": {
     "**/.vscode": true
+  },
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+  },
+  "files.associations": {
+    "*.example": "pbtxt",
+    "coroutine": "cpp",
+    "exception": "cpp"
   }
 }

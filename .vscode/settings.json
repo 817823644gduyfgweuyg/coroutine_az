@@ -12,6 +12,8 @@
   "files.associations": {
     "*.example": "pbtxt",
     "coroutine": "cpp",
-    "exception": "cpp"
+    "exception": "cpp",
+    "iostream": "cpp",
+    "ostream": "cpp"
   }
 }

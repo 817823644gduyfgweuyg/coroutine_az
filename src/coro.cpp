@@ -2,100 +2,172 @@
 #include <coroutine>
 #include <exception>
 #include <iostream>
+#include <memory>
+
+#define INFORM 
+// #define INFORM do {std::cout << __PRETTY_FUNCTION__ << std::endl;} while(0);
 
 struct Node
 {
-  Node *left{};
-  Node *right{};
-  int val;
+  explicit Node(int v) : val(v) {};
+  std::unique_ptr<Node> left{};
+  std::unique_ptr<Node> right{};
+  int val{};
+};
+
+struct promise_t
+{
+  promise_t()
+  {
+    INFORM;
+  }
+  ~promise_t()
+  {
+    INFORM;
+  }
+  auto get_return_object()
+  {
+    INFORM;
+    return std::coroutine_handle<promise_t>::from_promise(*this);
+  }
+  std::suspend_never initial_suspend()
+  {
+    INFORM;
+    return {};
+  }
+  std::suspend_always final_suspend() noexcept
+  {
+    INFORM;
+    return {};
+  }
+  void return_void()
+  {
+    INFORM;
+  }
+  std::suspend_always yield_value(int val)
+  {
+    value = val;
+    INFORM;
+    return {};
+  }
+  void unhandled_exception()
+  {
+    std::terminate();
+  }
+  int value{};
 };
 
 struct ReturnObject
 {
-  struct promise_type
-  {
-    ReturnObject get_return_object()
-    {
-      std::cout << "get_return_object" << std::endl;
-      return {};
-    }
-    std::suspend_never initial_suspend()
-    {
-      std::cout << "initial_suspend" << std::endl;
-      return {};
-    }
-    std::suspend_never final_suspend() noexcept
-    {
-      std::cout << "final_suspend" << std::endl;
-      return {};
-    }
-    void return_value(int val)
-    {
-      std::cout << val << std::endl;
-    }
-    void yield_value(int val)
-    {
-      std::cout << val << std::endl;
-    }
-    void unhandled_exception() {}
-  };
+  using promise_type = promise_t;
   ~ReturnObject()
   {
-    std::cout << "~ReturnObject\n";
+    handle_.destroy();
+    INFORM;
   }
-  ReturnObject()
+  ReturnObject(std::coroutine_handle<promise_type> handle) : handle_(handle)
   {
-    std::cout << "ReturnObject\n";
+    INFORM;
   }
+  auto value()
+  {
+    INFORM;
+    return handle_.promise().value;
+  }
+  bool done()
+  {
+    INFORM;
+    return handle_.done();
+  }
+  void resume()
+  {
+    INFORM;
+    handle_.resume();
+  }
+
+private:
+  std::coroutine_handle<promise_type> handle_;
 };
 
-struct Awaiter
-{
-  std::coroutine_handle<> &hp_;
-  bool await_ready() const noexcept
-  {
-    std::cout << "await_ready\n";
-    return false;
-  }
-  void await_suspend(std::coroutine_handle<> &h)
-  {
-    std::cout << "await_suspend\n";
-    hp_ = h;
-  }
-  void await_resume() const noexcept
-  {
-    std::cout << "await_resume\n";
-  }
-  ~Awaiter()
-  {
-    std::cout << "~Awaiter\n";
-  }
-};
+// struct Awaiter
+// {
+//   std::coroutine_handle<> &hp_;
+//   bool await_ready() const noexcept
+//   {
+//     INFORM;
+//     return false;
+//   }
+//   void await_suspend(std::coroutine_handle<> &h)
+//   {
+//     INFORM;
+//     hp_ = h;
+//   }
+//   void await_resume() const noexcept
+//   {
+//     INFORM;
+//   }
+//   ~Awaiter()
+//   {
+//     INFORM;
+//   }
+// };
 
-ReturnObject counter(/*std::coroutine_handle<> &continuation_out*/)
+// ReturnObject counter(/*std::coroutine_handle<> &continuation_out*/)
+// {
+//   // Awaiter a{continuation_out};
+//   for (unsigned i = 0;; ++i)
+//   {
+//     std::cout << "calling co_await\n";
+//     // co_await a;
+//     std::cout << "counter: " << i << std::endl;
+//     co_return 123;
+//   }
+// }
+
+
+ReturnObject InOrder(Node* node)
 {
-  // Awaiter a{continuation_out};
-  for (unsigned i = 0;; ++i)
+  if (node == nullptr) co_return;
+  auto l = InOrder(node->left.get());
+  while (!l.done())
   {
-    std::cout << "calling co_await\n";
-    // co_await a;
-    std::cout << "counter: " << i << std::endl;
-    co_return 123;
+    l.resume();
+    co_yield l.value();
+  }
+  co_yield node->val;
+  auto r = InOrder(node->right.get());
+  while (!r.done())
+  {
+    r.resume();
+    co_yield r.value();
   }
 }
 
 int main()
 {
-  auto obj = counter();
+  Node root(2);
+  Node* p = &root;
+  for (int i =0; i < 1000;++i)  {
+    p->left = std::make_unique<Node>(-i);
+    p->right = std::make_unique<Node>(-2*i);
+    p=p->left.get();
+  }
+  Node root2(2);
+  Node* p2 = &root2;
+  for (int i =0; i < 100000; ++i)  {
+    p2->left = std::make_unique<Node>(-i);
+    p2->right = std::make_unique<Node>(-2*i);
+    p2=p2->left.get();
+  }
+  // root.left = std::make_unique<Node>(-1);
+  // root.right = std::make_unique<Node>(3);
+  
+  auto obj = InOrder(&root);
 
-  // std::coroutine_handle<> h;
-  // counter(h);
-  // for (int i = 0; i < 3; ++i)
-  // {
-  //   std::cout << "In main1 function\n";
-  //   h();
-  // }
-  // std::cout << "end of loop" << std::endl;
-  // h.destroy();
-  std::cout << "done" << std::endl;
+  while (!obj.done())
+  {
+    //std::cout << obj.value() << ' ';
+    obj.value();
+    obj.resume();
+  }
 }

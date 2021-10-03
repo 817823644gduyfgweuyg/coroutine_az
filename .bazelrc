@@ -24,3 +24,15 @@ build --experimental_repo_remote_exec
 query --experimental_repo_remote_exec
 build --per_file_copt .*upb.c@-w
 
+build:asan --copt -fsanitize=address
+build:asan --copt=-g
+build:asan --copt=-O0
+build:asan --copt -DADDRESS_SANITIZER=1
+build:asan --copt -D__SANITIZE_ADDRESS__
+build:asan --linkopt -fsanitize=address
+
+build:ubsan --copt -fsanitize=undefined
+build:ubsan --copt=-g
+build:ubsan --copt=-O0
+build:ubsan --linkopt -fsanitize=undefined
+

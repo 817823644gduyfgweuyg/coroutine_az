@@ -1,5 +1,5 @@
 FROM ubuntu:20.04
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
  gcc-10 \
  g++-10 \
  gdb \
@@ -18,6 +18,9 @@ RUN apt-get update && apt-get install -y \
  sudo \
 && rm -rf /var/lib/apt/lists/*
 
+#sudo apt-get install software-properties-common
+# sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+#	sudo apt install -y gcc-11
 RUN curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor > bazel.gpg
 RUN mv bazel.gpg /etc/apt/trusted.gpg.d/
 RUN echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | tee /etc/apt/sources.list.d/bazel.list
@@ -30,6 +33,7 @@ RUN pip install pip numpy wheel
 RUN pip install keras_preprocessing --no-deps
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 20
 RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 20
+RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-11 20
 RUN update-alternatives --install /usr/bin/cc cc /usr/bin/gcc 30
 RUN update-alternatives --set cc /usr/bin/gcc
 RUN update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++ 30

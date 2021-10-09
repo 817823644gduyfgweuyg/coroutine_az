@@ -1,6 +1,14 @@
 workspace(name = "coroutine_az")
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+http_archive(
+    name = "com_github_google_benchmark",
+    sha256 = "2a778d821997df7d8646c9c59b8edb9a573a6e04c534c01892a40aa524a7b68c",
+    strip_prefix = "benchmark-bf585a2789e30585b4e3ce6baf11ef2750b54677",
+    urls = ["https://github.com/google/benchmark/archive/bf585a2789e30585b4e3ce6baf11ef2750b54677.zip"],
+)
+
 load("//bzl:repo.bzl", "tensorflow_serving_http_archive")
 
 tensorflow_serving_http_archive(
@@ -140,3 +148,23 @@ workspace()
 load("@rules_pkg//:deps.bzl", "rules_pkg_dependencies")
 
 rules_pkg_dependencies()
+
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
+
+git_repository(
+    name = "com_github_nelhage_rules_boost",
+    commit = "1e3a69bf2d5cd10c34b74f066054cd335d033d71",
+    remote = "https://github.com/nelhage/rules_boost",
+    shallow_since = "1591047380 -0700",
+)
+
+load("@com_github_nelhage_rules_boost//:boost/boost.bzl", "boost_deps")
+
+boost_deps()
+
+# git_repository(
+#     name = "com_github_nelhage_rules_boost",
+#     commit = "1e3a69bf2d5cd10c34b74f066054cd335d033d71",
+#     remote = "https://github.com/nelhage/rules_boost",
+#     shallow_since = "1591047380 -0700",
+# )

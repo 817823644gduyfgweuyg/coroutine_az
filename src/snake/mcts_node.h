@@ -7,7 +7,7 @@
 #include <random>
 #include <vector>
 
-#include "snake/snake.h"
+#include "src/snake/snake.h"
 #include "tensorflow/core/platform/default/logging.h"
 
 namespace snake {

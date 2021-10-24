@@ -114,27 +114,27 @@ cc_library(
     ],
 )
 
-# cc_library(
-#     name = "az_mcts",
-#     hdrs = ["az_mcts.h"],
-#     copts = tf_copts() + [
-#         "-Werror",
-#         "-Wextra",
-#         "-Wall",
-#     ],
-#     deps = [
-#         ":mcts_node",
-#         ":network_fiber_batch",
-#         ":snake",
-#         "@org_tensorflow//tensorflow/cc/saved_model:loader",
-#         "@org_tensorflow//tensorflow/cc/saved_model:tag_constants",
-#         "@org_tensorflow//tensorflow/core:lib",
-#         "@org_tensorflow//tensorflow/core:tensorflow",
-#         "@org_tensorflow//tensorflow/core/platform:logging",
-#         "@com_google_absl//absl/flags:flag",
-#         "@com_google_absl//absl/flags:parse",
-#     ],
-# )
+cc_library(
+    name = "az_mcts",
+    hdrs = ["az_mcts.h"],
+    copts = tf_copts() + [
+        "-Werror",
+        "-Wextra",
+        "-Wall",
+    ],
+    deps = [
+        ":mcts_node",
+        ":network_fiber_batch",
+        ":snake",
+        "@org_tensorflow//tensorflow/cc/saved_model:loader",
+        "@org_tensorflow//tensorflow/cc/saved_model:tag_constants",
+        "@org_tensorflow//tensorflow/core:lib",
+        "@org_tensorflow//tensorflow/core:tensorflow",
+        "@org_tensorflow//tensorflow/core/platform:logging",
+        "@com_google_absl//absl/flags:flag",
+        "@com_google_absl//absl/flags:parse",
+    ],
+)
 
 # cc_library(
 #     name = "network_fiber_batch",
@@ -175,7 +175,7 @@ cc_test(
     srcs = ["snake_test.cc"],
     deps = [
         ":snake",
-        "@com_google_googletest//:gtest_main",
+        "@com_google_googletest//:_main",
     ],
 )
 

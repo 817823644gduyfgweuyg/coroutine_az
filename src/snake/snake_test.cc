@@ -1,4 +1,4 @@
-#include "snake/snake.h"
+#include "src/snake/snake.h"
 
 #include <gtest/gtest.h>
 

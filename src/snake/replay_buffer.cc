@@ -1,5 +1,5 @@
 
-#include "snake/replay_buffer.h"
+#include "src/snake/replay_buffer.h"
 
 #include "absl/flags/flag.h"
 #include "tensorflow/core/framework/tensor.h"

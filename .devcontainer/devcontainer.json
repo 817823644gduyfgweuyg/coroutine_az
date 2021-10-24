@@ -4,7 +4,8 @@
 },
 "extensions": [
 	"ms-vscode.cpptools",
-	"bazelbuild.vscode-bazel"
+	"bazelbuild.vscode-bazel",
+	"zxh404.vscode-proto3"
 ],
 "remoteUser": "user",
 }

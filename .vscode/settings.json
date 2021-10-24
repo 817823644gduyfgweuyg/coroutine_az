@@ -80,6 +80,7 @@
     "typeindex": "cpp",
     "typeinfo": "cpp",
     "variant": "cpp",
-    "semaphore": "cpp"
+    "semaphore": "cpp",
+    "hash_map": "cpp"
   }
 }

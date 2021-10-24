@@ -1,7 +1,7 @@
-#include "snake/az_mcts.h"
+#include "src/snake/az_mcts.h"
 
 #include "absl/strings/str_join.h"
-#include "snake/network_fiber_batch.h"
+#include "src/snake/network_fiber_batch.h"
 #include "tensorflow/core/platform/test.h"
 #include "tensorflow/core/platform/test_benchmark.h"
 

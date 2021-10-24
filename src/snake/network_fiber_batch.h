@@ -1,8 +1,8 @@
 #ifndef TENSORFLOW_CC_EXAMPLES_NETWORK_FIBER_BATCH_H_
 #define TENSORFLOW_CC_EXAMPLES_NETWORK_FIBER_BATCH_H_
 
-#include "snake/mcts_prediction_batching.h"
-#include "snake/network.h"
+#include "src/snake/mcts_prediction_batching.h"
+#include "src/snake/network.h"
 
 namespace snake {
 

@@ -5,9 +5,9 @@
 #include "absl/flags/flag.h"
 #include "absl/flags/parse.h"
 #include "absl/strings/str_join.h"
-#include "snake/replay_buffer.h"
-#include "snake/snake.grpc.pb.h"
-#include "snake/snake.pb.h"
+#include "src/snake/replay_buffer.h"
+#include "src/snake/snake.grpc.pb.h"
+#include "src/snake/snake.pb.h"
 #include "tensorflow/core/platform/default/logging.h"
 
 ABSL_FLAG(int, port, 8000, "Port for the server to listen on.");

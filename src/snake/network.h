@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "snake/snake.h"
+#include "src/snake/snake.h"
 #include "tensorflow/cc/saved_model/loader.h"
 #include "tensorflow/cc/saved_model/tag_constants.h"
 #include "tensorflow/core/platform/default/logging.h"

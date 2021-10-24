@@ -20,9 +20,9 @@ LEFT -x ---------  +x  RIGHT
 #include <vector>
 
 #include "absl/strings/str_join.h"
-#include "snake/snake.pb.h"
+#include "src/snake/snake.pb.h"
 #include "tensorflow/core/platform/default/logging.h"
-// #include "snake/snake.grpc.pb.h"
+// #include "src/snake/snake.grpc.pb.h"
 
 namespace snake {
 

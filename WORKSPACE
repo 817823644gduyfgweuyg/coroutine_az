@@ -9,6 +9,13 @@ http_archive(
     urls = ["https://github.com/google/benchmark/archive/bf585a2789e30585b4e3ce6baf11ef2750b54677.zip"],
 )
 
+
+http_archive(
+  name = "com_google_googletest",
+  urls = ["https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip"],
+  strip_prefix = "googletest-609281088cfefc76f9d0ce82e1ff6c30cc3591e5",
+)
+
 load("//bzl:repo.bzl", "tensorflow_serving_http_archive")
 
 tensorflow_serving_http_archive(

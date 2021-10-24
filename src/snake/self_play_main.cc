@@ -5,10 +5,10 @@
 #include "absl/flags/flag.h"
 #include "absl/flags/parse.h"
 #include "absl/strings/str_join.h"
-#include "snake/network_fiber_batch.h"
-#include "snake/self_play.h"
-#include "snake/snake.grpc.pb.h"
-#include "snake/snake.pb.h"
+#include "src/snake/network_fiber_batch.h"
+#include "src/snake/self_play.h"
+#include "src/snake/snake.grpc.pb.h"
+#include "src/snake/snake.pb.h"
 #include "tensorflow/core/platform/default/logging.h"
 
 ABSL_FLAG(std::string, replay_buffer, "localhost:8000",

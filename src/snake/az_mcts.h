@@ -1,5 +1,4 @@
-#ifndef TENSORFLOW_CC_EXAMPLES_AZ_MCTS_H_
-#define TENSORFLOW_CC_EXAMPLES_AZ_MCTS_H_
+#pragma once
 
 #include <array>
 #include <bitset>
@@ -14,15 +13,14 @@
 #include <thread>
 #include <vector>
 
-#include "snake/mcts_node.h"
-#include "snake/network_fiber_batch.h"
-#include "snake/snake.h"
+#include "src/snake/mcts_node.h"
+#include "src/snake/network_fiber_batch.h"
+#include "src/snake/snake.h"
 #include "tensorflow/cc/saved_model/loader.h"
 #include "tensorflow/cc/saved_model/tag_constants.h"
 #include "tensorflow/core/platform/default/logging.h"
 
 namespace snake {
-
 /*
 double random_rollout(const SnakeMctsAdapter& state) {
   auto s = state;
@@ -490,5 +488,3 @@ def make_uniform_network():
 */
 
 }  // namespace snake
-
-#endif

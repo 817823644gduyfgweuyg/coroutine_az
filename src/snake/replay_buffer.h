@@ -1,7 +1,7 @@
 #include <grpcpp/grpcpp.h>
 
-#include "snake/snake.grpc.pb.h"
-#include "snake/snake.pb.h"
+#include "src/snake/snake.grpc.pb.h"
+#include "src/snake/snake.pb.h"
 #include "tensorflow/core/framework/tensor.h"
 
 using grpc::ServerContext;

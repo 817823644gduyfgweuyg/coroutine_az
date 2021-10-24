@@ -1,7 +1,7 @@
-#include "snake/self_play.h"
+#include "src/snake/self_play.h"
 
 #include "absl/strings/str_join.h"
-#include "snake/network_fiber_batch.h"
+#include "src/snake/network_fiber_batch.h"
 #include "tensorflow/core/platform/test.h"
 
 namespace snake {

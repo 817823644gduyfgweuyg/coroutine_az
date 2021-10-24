@@ -1,7 +1,7 @@
 #ifndef TENSORFLOW_CC_EXAMPLES_SELF_PLAY_H_
 #define TENSORFLOW_CC_EXAMPLES_SELF_PLAY_H_
 
-#include "snake/az_mcts.h"
+#include "src/snake/az_mcts.h"
 
 namespace snake {
 

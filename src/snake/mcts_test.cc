@@ -1,4 +1,4 @@
-#include "snake/mcts.h"
+#include "src/snake/mcts.h"
 
 #include <boost/coroutine2/coroutine.hpp>
 #include <boost/fiber/all.hpp>

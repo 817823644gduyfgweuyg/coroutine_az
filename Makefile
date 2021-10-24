@@ -13,3 +13,6 @@ container:
 
 # run: container
 # 	docker run -i -t --rm --volume $(PWD)/src/:/home/$(USER)/src --user=$(USER) devcontainer bash
+
+
+# @command:remote-containers.openRepositoryInUniqueVolume
